@@ -1,0 +1,112 @@
+<%- include('partials/header') %>
+    <main>
+        <h1 class="title">About Troop 27B and G</h1>
+        <div id="about_section">
+            <img src="/images/PLanotexas.PNG" alt="Troop 27 logo">
+            <p>
+                Troop 27 B and G operates out of Plano, TX.  Our troop participates in many scouting activities during the year.  Our fundraisers pay for those activities, especially our summer camps!  Our younger scouts go to Camp Hale in Oklahoma, where they work on merit badges they need for rank advancement and learn fun things like sailing, robotics, or welding.  Our older scouts go on high adventure where they get to summit mountains, backpack across country, raft river rapids, zipline across canyons, and learn to ride ATVs.
+            </p>
+        </div>
+        
+        <h1 class="camp_title">Summer Camp</h1>
+        
+        <div id="hale_info">
+            <h3 class="camp_name">Camp Hale</h3>
+            <p>
+                Camp Hale is near Taihina, Oklahoma and is adjacent to the Ouachita National Forest. They have a beautiful lake where many of our scouts choose to get up early and participate in the mile swim.  We love their Soaring to Eagle program where our first year campers complete many of the requirements to advance to First Class. Their Horsemanship merit badge culminates in a Scout/Parent trail ride up the mountain.  They offer every kind of merit badge, from Eagle required to technology to winter sports on their simulated ski slope!
+            </p>
+            <img src="/images/rsz_1blue_hale(1).png" alt="Troop 27 at Camp Hale">
+
+        </div>
+
+        <h1 class="camp_title">High Adventure</h1>
+
+        <section id="z_base">
+            <h3 class="camp_name">2022 - Z-Base, OK</h3>
+            <p>
+                Our troop did a 7 day trek where we canoed across a lake, shot black powder rifles at the old west range, conquered a 4 story climbing tower with zipline, shot clay pigeons at an 18 station shotgun course, got ASI ATV rider training and did a trail ride, and knee-boarded at the cable-wake park.
+            </p>
+            
+            <!-- Slideshow container -->
+            <div class="slideshow-container">
+
+            <!-- Full-width images with number and caption text -->
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 4</div>
+                    <img src="/images/rsz_atvpic(1).png" style="width:100%" alt="Troop 27 ready for ASI ATV rider training at BSA Z-base">
+                    <div class="text">Troop 27 Ready to Ride!!</div>
+                </div>
+  
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 4</div>
+                    <img src="/images/rsz_atv_grouppic(1).png" style="width:100%" alt="Troop 27 with out ATV instructor">
+                    <div class="text">Best teacher ever!</div>
+                </div>
+  
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 4</div>
+                    <img src="/images/rsz_shotguns(1).jpg" style="width:100%" alt="shooting clay pigeons at the z-base 18 station shotgun course">
+                    <div class="text">Shooting Clay Pigeons</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">4 / 4</div>
+                    <img src="/images/rsz_ropes(1).jpg" style="width:100%" alt="shooting clay pigeons at the z-base 18 station shotgun course">
+                    <div class="text">Shooting Clay Pigeons</div>
+                </div>
+  
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        <br>
+  
+            <!-- The dots/circles -->
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+        </section>
+
+        <section id="philmont">
+            <h3 class="camp_name">2023 Philmont, NM</h3>
+            <!-- This needs more detail too, ask Mary and Kathy what the highlights were-->
+            <p>
+                Philmont 12 day trek 
+            </p>
+            <img id="pgroup" src="/images/rsz_philmontgroup(1).jpg" alt="Troop 27 at Philmont Scout Ranch">
+            <button id="trail" onclick="myFunction()">
+                <img src="/images/philmonttrail(1).jpg" alt="Troop 27 on the trail at Philmont scout ranch">
+            </button>
+        </section>
+        <script>
+            function myFunction() {
+              document.getElementById("trail").style.zIndex = "-1";
+            }
+        </script>
+        <section id="colorado">
+            <h3 class="camp_name">2024 Colorado</h3>
+            <p>
+                Camping and sand sledding at Great Sand Dunes National Park, all-day rafting on the Arkansas river with class IV rapids, Multiple level ropes course and zipline course, camping and back-country hiking to the bottom of the Black Canyon of the Gunnison, hiking to the summit of Mt Elbert the highest peak in Colorado.  
+            </p>
+            <img id="cgroup" src="/images/rsz_coloradogroup(1).jpg" alt="Troop 27 preparing to hike Mount Elbert in Colorado">
+            <button id="zip" onclick="myotherFunction()">
+                <img src="/images/rsz_coloradozipline(1).jpg" alt="Troop 27 at the zipline course outside Salina Colorado">
+            </button>
+
+                <!-- Find the name of the zipline place-->
+        </section>
+        <script>
+            function myotherFunction() {
+              document.getElementById("zip").style.zIndex = "-1";
+            }
+        </script>
+        <section id="gulf_shores">
+            <h3 class="title">2025 Gulf Shores Mississippi coming soon!  </h3>
+        </section>
+    </main>
+   
+        <script src="/css/styles.js"></script>
+<%- include('partials/footer') %>
