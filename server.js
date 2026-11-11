@@ -47,6 +47,30 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use((req, res, next) => {
+    // Skip logging for routes that start with /. (like /.well-known/)
+    if (!req.path.startsWith('/.')) {
+        console.log(`${req.method} ${req.url}`);
+    }
+    next(); // Pass control to the next middleware or route
+});
+
+// Middleware to add global data to all templates
+app.use((req, res, next) => {
+    // Add current year for copyright
+    res.locals.currentYear = new Date().getFullYear();
+
+    next();
+});
+
+// Global middleware to share query parameters with templates
+app.use((req, res, next) => {
+    // Make req.query available to all templates for debugging and conditional rendering
+    res.locals.queryParams = req.query || {};
+
+    next();
+});
+
 //routes
 /**
  * Routes
@@ -69,6 +93,44 @@ app.get('/about_mulch', (req, res) => {
     res.render('about_mulch', { title });
 });
 
+// Course detail page with route parameter
+app.get('/catalog/:courseId', (req, res) => {
+    // Extract the course ID from the URL
+    const courseId = req.params.courseId;
+
+    // Look up the course in our data
+    const course = courses[courseId];
+
+    // Handle course not found
+    if (!course) {
+        const err = new Error(`Course ${courseId} not found`);
+        err.status = 404;
+        return next(err);
+    }
+
+    // Log the parameter for debugging
+    console.log('Viewing course:', courseId);
+
+    // Render the course detail template
+    res.render('course-detail', {
+        title: `${course.id} - ${course.title}`,
+        course: course
+    });
+});
+
+// Course catalog list page
+//this path is not working, needs to be fixed, probably will be later
+app.get('/src/views/mulch/list', (req, res) => {
+    res.render('mulch', {
+        title: 'Mulch',
+        // courses: courses TODO: replace this
+    });
+});
+
+
+
+
+
 // When in development mode, start a WebSocket server for live reloading
 if (NODE_ENV.includes('dev')) {
     const ws = await import('ws');
@@ -88,6 +150,50 @@ if (NODE_ENV.includes('dev')) {
         console.error('Failed to start WebSocket server:', error);
     }
 }
+
+// Test route for 500 errors
+app.get('/test-error', (req, res, next) => {
+    const err = new Error('This is a test error');
+    err.status = 500;
+    next(err);
+});
+
+// Catch-all route for 404 errors
+app.use((req, res, next) => {
+    const err = new Error('Page Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+    // Prevent infinite loops, if a response has already been sent, do nothing
+    if (res.headersSent || res.finished) {
+        return next(err);
+    }
+
+    // Determine status and template
+    const status = err.status || 500;
+    const template = status === 404 ? '404' : '500';
+
+    // Prepare data for the template
+    const context = {
+        title: status === 404 ? 'Page Not Found' : 'Server Error',
+        error: NODE_ENV === 'production' ? 'An error occurred' : err.message,
+        stack: NODE_ENV === 'production' ? null : err.stack,
+        NODE_ENV // Our WebSocket check needs this and its convenient to pass along
+    };
+
+    // Render the appropriate error template with fallback
+    try {
+        res.status(status).render(`errors/${template}`, context);
+    } catch (renderErr) {
+        // If rendering fails, send a simple error page instead
+        if (!res.headersSent) {
+            res.status(status).send(`<h1>Error ${status}</h1><p>An error occurred.</p>`);
+        }
+    }
+});
 
 // Start the server and listen on the specified port
 app.listen(PORT, () => {
