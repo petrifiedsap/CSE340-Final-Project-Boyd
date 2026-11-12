@@ -1,21 +1,4 @@
 /**
- * Helper function to get the current greeting based on the time of day.
- */
-const getCurrentGreeting = () => {
-    const currentHour = new Date().getHours();
-
-    if (currentHour < 12) {
-        return 'Good Morning!';
-    }
-
-    if (currentHour < 18) {
-        return 'Good Afternoon!';
-    }
-
-    return 'Good Evening!';
-};
-
-/**
  * Express middleware that adds head asset management functionality to routes.
  * Provides arrays for storing CSS and JS assets with priority support.
  * 
@@ -71,20 +54,12 @@ const addLocalVariables = (req, res, next) => {
     // Make req.query available to all templates
     res.locals.queryParams = { ...req.query };
 
-    // Set greeting based on time of day
-    res.locals.greeting = getCurrentGreeting();
-
     // Convenience variable for UI state based on session state
     res.locals.isLoggedIn = false;
     if (req.session && req.session.user) {
     res.locals.isLoggedIn = true;
     }
 
-    // Randomly assign a theme class to the body
-    const themes = ['blue-theme', 'green-theme', 'red-theme'];
-    const randomTheme = themes[Math.floor(Math.random() * themes.length)];
-    res.locals.bodyClass = randomTheme;
-    setHeadAssetsFunctionality(res)
     // Continue to the next middleware or route handler
     next();
 };

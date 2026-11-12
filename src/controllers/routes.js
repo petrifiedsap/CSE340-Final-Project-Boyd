@@ -1,6 +1,5 @@
 // import statements from controllers and middleware
-import { addDemoHeaders } from '../middleware/demo/headers.js';
-import { catalogPage, courseDetailPage } from './catalog/catalog.js';
+import { mulchPage, mulchDetailPage } from './mulch/mulch.js';
 import { homePage, aboutPage, demoPage, testErrorPage } from './index.js';
 import { facultyListPage, facultyDetailPage } from './faculty/faculty.js';
 import contactRoutes from './forms/contact.js';
@@ -15,14 +14,9 @@ import { Router } from 'express';
 const router = Router();
 
 // Router middleware
-// Add catalog-specific styles to all catalog routes
-router.use('/catalog', (req, res, next) => {
-    res.addStyle('<link rel="stylesheet" href="/css/catalog.css">');
-    next();
-});
-
-router.use('/faculty', (req, res, next) => {
-    res.addStyle('<link rel="stylesheet" href="/css/faculty.css">');
+// Add page-specific styles to all routes
+router.use('/mulch', (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/mulch.css">');
     next();
 });
 
@@ -31,13 +25,11 @@ router.use('/register', (req, res, next) => {
     next();
 });
 
-// Add contact-specific styles to all contact routes
-router.use('/contact', (req, res, next) => {
-    res.addStyle('<link rel="stylesheet" href="/css/contact.css">');
+router.use('/order', (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/order.css">');
     next();
 });
 
-// Add login-specific styles to all login routes
 router.use('/login', (req, res, next) => {
     res.addStyle('<link rel="stylesheet" href="/css/login.css">');
     next();
@@ -46,18 +38,11 @@ router.use('/login', (req, res, next) => {
 // Route definitions
 // Home and basic pages
 router.get('/', homePage);
-router.get('/about', aboutPage);
+router.get('/about_us', aboutPage);
 
-// Course catalog routes
-router.get('/catalog', catalogPage);
-router.get('/catalog/:slugId', courseDetailPage);
-
-//faculty routes
-router.get('/faculty', facultyListPage);
-router.get('/faculty/:facultySlug', facultyDetailPage);
-
-// Demo page with special middleware
-router.get('/demo', addDemoHeaders, demoPage);
+// Mulch info routes
+router.get('/mulch', mulchPage);
+router.get('/mulch/:slugId', mulchDetailPage);
 
 // Route to trigger a test error
 router.get('/test-error', testErrorPage);
