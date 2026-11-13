@@ -1,8 +1,7 @@
 // import statements from controllers and middleware
-import { mulchPage, mulchDetailPage } from './mulch/mulch.js';
-import { homePage, aboutPage, demoPage, testErrorPage } from './index.js';
-import { facultyListPage, facultyDetailPage } from './faculty/faculty.js';
-import contactRoutes from './forms/contact.js';
+import { homePage, aboutPage } from './index.js';
+import { productListPage, productDetailPage } from './product/product.js';
+import orderRoutes from './forms/order.js';
 import registrationRoutes from './forms/registration.js';
 import loginRoutes from './forms/login.js';
 import { processLogout, showDashboard } from './forms/login.js';
@@ -15,8 +14,8 @@ const router = Router();
 
 // Router middleware
 // Add page-specific styles to all routes
-router.use('/mulch', (req, res, next) => {
-    res.addStyle('<link rel="stylesheet" href="/css/mulch.css">');
+router.use('/product', (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/product.css">');
     next();
 });
 
@@ -41,14 +40,11 @@ router.get('/', homePage);
 router.get('/about_us', aboutPage);
 
 // Mulch info routes
-router.get('/mulch', mulchPage);
-router.get('/mulch/:slugId', mulchDetailPage);
-
-// Route to trigger a test error
-router.get('/test-error', testErrorPage);
+router.get('/product', productListPage);
+router.get('/product/:slugId', productDetailPage);
 
 // Contact form routes
-router.use('/contact', contactRoutes);
+router.use('/order', orderRoutes);
 
 // Registration routes
 router.use('/register', registrationRoutes);

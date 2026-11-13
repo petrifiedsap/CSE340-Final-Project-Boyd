@@ -60,6 +60,7 @@ const addLocalVariables = (req, res, next) => {
     res.locals.isLoggedIn = true;
     }
 
+    setHeadAssetsFunctionality(res);
     // Continue to the next middleware or route handler
     next();
 };

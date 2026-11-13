@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>scout mulch site</title>
     <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <%- renderStyles() %>
+    <%- renderScripts() %>
     <% if (NODE_ENV.includes('dev')) { %>
     <script>
         // Get the current hostname and port from the browser
