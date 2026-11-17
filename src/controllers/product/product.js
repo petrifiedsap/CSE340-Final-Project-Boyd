@@ -3,11 +3,11 @@ import { getProductBySlug, getSortedProducts } from '../../models/product/produc
 // Route handler for the faculty list page
 const productListPage = async (req, res) => {
     const sort = req.query.sort || 'name';
-    const product = await getSortedProducts(sort);
+    const products = await getSortedProducts(sort);
 console.log(sort);
     res.render('product/list', {
         title: 'Product List',
-        product,
+        products,
         currentSort: sort
     });
 };

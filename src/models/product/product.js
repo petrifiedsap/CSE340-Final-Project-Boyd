@@ -81,7 +81,7 @@ const getSortedProducts = async (sortBy = 'color') => {
  * @param {string} sortBy - Sort option: 'name' (default), 'department', 'title'
  * @returns {Promise<Array>} Array of faculty objects in the specified department
  */
-const getProductsByPrice = async (departmentId, sortBy = 'price') => {
+const getProductsByPrice = async (productId, sortBy = 'price') => {
     const orderByClause = sortBy === 'price' ? 'p.base_price' :
                           sortBy === 'title' ? 'p.id, p.name' :
                           'p.name, p.base_price, p.price_installed';
@@ -94,7 +94,7 @@ const getProductsByPrice = async (departmentId, sortBy = 'price') => {
         ORDER BY ${orderByClause}
     `;
     
-    const result = await db.query(query, [base_price]);
+    const result = await db.query(query, [productId]);
     
     return result.rows.map(product => ({
         id: product.id,

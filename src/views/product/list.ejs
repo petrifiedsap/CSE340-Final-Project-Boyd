@@ -2,14 +2,14 @@
 <main>
     <h1>Mulch</h1>
     <p>These are the beautiful things!</p>
-    // TODO all of this needs to be fixed once the database is set up
-
+    <!-- TODO all of this needs to be fixed once the database is set up
+-->
     <div class="course-list">
-        <% Object.values(courses).forEach(course => { %>
+        <% Object.values(products).forEach(product => { %>
             <div class="course-card">
-                <h3><a href="/catalog/<%= course.slug %>"><%= course.courseCode %></a></h3>
-                <p class="course-id"><%= course.name %> • <%= course.creditHours %> credits</p>
-                <p class="course-description"><%= course.description %></p>
+                <h3><a href="/product/<%= product.slug %>"><%= product.name %></a></h3>
+                <p class="course-id"><%= product.color %></p>
+                <p class="course-description"><%= product.description %></p>
             </div>
         <% }); %>
     </div>
