@@ -4,23 +4,23 @@
 BEGIN;
 
 -- Drop existing tables (in reverse dependency order)
-DROP TABLE IF EXISTS mulch CASCADE;
+DROP TABLE IF EXISTS products CASCADE;
 
--- Create courses table
+-- Create products table
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
     name VARCHAR(25) NOT NULL,
     description TEXT,
     color VARCHAR(25) NOT NULL,
     premium BOOLEAN NOT NULL DEFAULT FALSE,
-    base_price INTEGER NOT NULL CHECK (price_delivered > 0),
-    price_installed INTEGER NOT NULL CHECK (price_spread > 0),
+    base_price INTEGER NOT NULL CHECK (base_price > 0),
+    price_installed INTEGER NOT NULL CHECK (price_installed > 0),
     slug VARCHAR(20) UNIQUE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Insert mulch
+-- Insert products
 INSERT INTO products (name, description, color, premium, base_price, price_installed, slug) VALUES
     ('Hardwood Mulch', 'Lovely brown hardwood mulch ideal for your garden', 'Brown', FALSE, 5, 7, 'brown_reg'),
     ('Hardwood Mulch', 'Lovely black hardwood mulch ideal for your garden', 'Black', FALSE, 5, 7, 'black_reg'),
@@ -28,6 +28,6 @@ INSERT INTO products (name, description, color, premium, base_price, price_insta
     ('Premium Hardwood Mulch', 'Premium brown hardwood mulch ideal for your garden', 'Brown', TRUE, 7, 9, 'brown_prem'),
     ('Premium Hardwood Mulch', 'Premium black hardwood mulch ideal for your garden', 'Black', TRUE, 7, 9, 'black_prem'),
     ('Premium Cedar Mulch', 'Premium red cedar mulch ideal for your garden', 'Red', TRUE, 7, 9, 'red_prem'),
-    ('American Flag', 'American Flag exchange', 'red white and blue' FALSE, 10, 15, 'flag');
+    ('American Flag', 'American Flag exchange', 'red white and blue', FALSE, 10, 15, 'flag');
 
 COMMIT;
