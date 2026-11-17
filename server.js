@@ -8,6 +8,9 @@ import { setupDatabase, testConnection } from './src/models/setup.js';
 // Import MVC components
 import routes from './src/controllers/routes.js';
 import { addLocalVariables } from './src/middleware/global.js';
+import session from 'express-session';
+import connectPgSimple from 'connect-pg-simple';
+import { startSessionCleanup } from './src/utils/session-cleanup.js';
 
 // Server Configuration
 // Define the port number the server will listen on
@@ -23,6 +26,32 @@ const app = express();
 /**
  * Configure Express middleware
  */
+
+// Initialize PostgreSQL session store
+const pgSession = connectPgSimple(session);
+
+// Configure session middleware
+app.use(session({
+    store: new pgSession({
+        conObject: {
+            connectionString: process.env.DB_URL
+        },
+        tableName: 'session',
+        createTableIfMissing: true
+    }),
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: NODE_ENV.includes('dev') !== true,
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000
+    }
+}));
+
+// Start automatic session cleanup
+startSessionCleanup();
+
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 // Set EJS as the templating engine

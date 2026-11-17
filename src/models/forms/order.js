@@ -24,7 +24,7 @@ const createOrderForm = async (subject, message) => {
  * 
  * @returns {Promise<Array>} Array of contact form records
  */
-const getAllContactForms = async () => {
+const getAllOrderForms = async () => {
     const query = `
         SELECT id, subject, message, submitted
         FROM contact_form
@@ -34,4 +34,4 @@ const getAllContactForms = async () => {
     return result.rows;
 };
 
-export { createContactForm, getAllContactForms };
+export { createOrderForm, getAllOrderForms };

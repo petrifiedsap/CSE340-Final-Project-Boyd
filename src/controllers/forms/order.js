@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
-import { createContactForm, getAllContactForms } from '../../models/forms/contact.js';
+import { createOrderForm, getAllOrderForms } from '../../models/forms/order.js';
 
 const router = Router();
 
@@ -34,7 +34,7 @@ const handleOrderSubmission = async (req, res) => {
 
     try {
         // Save to database
-        await createorderForm(subject, message);
+        await createOrderForm(subject, message);
         console.log('Order form submitted successfully');
         // Redirect to responses page on success
         res.redirect('/order/responses');
@@ -47,7 +47,7 @@ const handleOrderSubmission = async (req, res) => {
 /**
  * Display all contact form submissions.
  */
-const showorderResponses = async (req, res) => {
+const showOrderResponses = async (req, res) => {
     let orderForms = [];
 
     try {

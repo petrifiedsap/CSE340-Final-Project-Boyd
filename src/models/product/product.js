@@ -48,7 +48,9 @@ const getSortedProducts = async (sortBy = 'color') => {
      * Build ORDER BY clause - notice we sort by last_name, then first_name for names.
      * This is the standard way to alphabetize people's names.
      */
-    const orderByClause = sortBy === 'name' ? 'p.name';
+    const orderByClause = sortBy === 'name' ? 'p.name, p.color' :
+                          sortBy === 'title' ? 'p.id, p.name' :
+                          'p.name, p.base_price, p.price_installed';
     
     const query = `
         SELECT p.id, p.name, p.description, p.color, p.premium, 
@@ -81,7 +83,8 @@ const getSortedProducts = async (sortBy = 'color') => {
  */
 const getProductsByPrice = async (departmentId, sortBy = 'price') => {
     const orderByClause = sortBy === 'price' ? 'p.base_price' :
-                          sortBy === 'color' ? 'p.color' ;
+                          sortBy === 'title' ? 'p.id, p.name' :
+                          'p.name, p.base_price, p.price_installed';
     
     // WHERE clause filters to only faculty in the specified department
     const query = `
