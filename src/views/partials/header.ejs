@@ -31,15 +31,15 @@
         <!-- Always visible links -->
         <li><a href="/">Home</a></li>
         <li><a href="/about_us">About</a></li>
-        <li><a href="/about_mulch">Course Catalog</a></li>
-        <li><a href="/product">Faculty Directory</a></li>
-        <li><a href="/order">Contact</a></li>
+        <li><a href="/about_mulch">Why Mulch?</a></li>
+        <li><a href="/product">Product Catalog</a></li>
+        <li><a href="/order">Order</a></li>
 
         <!-- Only visible when logged in -->
         <% if (isLoggedIn) { %>
             <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/register/list">All Users</a></li>
-            <li><a href="/order/responses">Contact Responses</a></li>
+            <li><a href="/order/responses">Order Responses</a></li>
             <li><a href="/logout">Logout</a></li>
         <% } %>
 

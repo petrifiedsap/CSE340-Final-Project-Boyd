@@ -1,5 +1,5 @@
 // import statements from controllers and middleware
-import { homePage, aboutPage } from './index.js';
+import { homePage, aboutPage, aboutMulch } from './index.js';
 import { productListPage, productDetailPage } from './product/product.js';
 import orderRoutes from './forms/order.js';
 import registrationRoutes from './forms/registration.js';
@@ -38,6 +38,11 @@ router.use('/login', (req, res, next) => {
 // Home and basic pages
 router.get('/', homePage);
 router.get('/about_us', aboutPage);
+router.get('/about_mulch', aboutMulch);
+
+// Authentication-related routes at root level
+router.get('/logout', processLogout);
+router.get('/dashboard', requireLogin, showDashboard);
 
 // Mulch info routes
 router.get('/product', productListPage);
@@ -51,9 +56,5 @@ router.use('/register', registrationRoutes);
 
 // Login routes (form and submission)
 router.use('/login', loginRoutes);
-
-// Authentication-related routes at root level
-router.get('/logout', processLogout);
-router.get('/dashboard', requireLogin, showDashboard);
 
 export default router;

@@ -4,7 +4,11 @@ const homePage = (req, res) => {
 };
 
 const aboutPage = (req, res) => {
-    res.render('about_us', { title: 'About' });
+    res.render('about_us', { title: 'About Us' });
 };
 
-export { homePage, aboutPage };
+const aboutMulch = (req, res) => {
+    res.render('about_mulch', { title: 'About Mulch' });
+};
+
+export { homePage, aboutPage, aboutMulch };
