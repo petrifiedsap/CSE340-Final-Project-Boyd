@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Pontano+Sans:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
-html, body {
+:root {
+    --navy: #003366;
+    --red: #a42212;
+    --light-text: #f0f0f0;
+    --frame-border: 5px solid #000;
+}
+
+html {
     background-color: lightblue;
     font-family: Arial, sans-serif;
     margin: 0;
@@ -8,20 +15,57 @@ html, body {
 }
 
 body {
+    width: 100%;
+    max-width: 1600px;
+    padding: 0;
+    margin: 0 auto;
+    font-size: 24px;
+    font-family: "pontano sans", "american typewriter", sans-serif; 
+
+    h1, h2, h3, h4 {
+        font-family: "Ubuntu", Georgia, sans-serif;
+    } 
+} 
+
+header {
+    background-color: var(--navy);
+    padding: 25px;
+
+    a {
+        color: var(--light-text);
+        justify-self: center;
+        align-self: center;
+        text-decoration: none;
+    }
+
+    .logo_link {
+        justify-self: center;
+        align-self: center;
+        padding-top: 5px;
+    }
+
+    .logo {
+        width: 80px;
+    }
+
     nav {
         ul {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
             list-style-type: none;
             padding: 0;
+            margin: 0 auto;
+            align-items: center;
         }
 
         li {
-            display: inline;
             margin-right: 15px;
         }
 
         a {
             text-decoration: none;
-            color: #333;
+            color: var(--light-text);
             font-weight: bold;
 
             &:hover {
@@ -31,54 +75,21 @@ body {
     }
 }
 
-body {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    font-size: 24px;
-    font-family: "pontano sans", "american typewriter", sans-serif; 
-}
-#content {
-    max-width: 1600px;
-    margin: 0 auto;
-}
-/*just setting tht fonts for the headings and links*/
-h1, h2, h3, h4 {
-   font-family: ubuntu, georgia, sans-serif;
-}
-a {
-   font-family: ubuntu, georgia, sans-serif;
-}
-/*this is the nav bar*/
-header {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    background-color: #003366;
-    padding: 25px;
-}
-header .logo_link {
-    justify-self: center;
-    align-self: center;
-    padding-top: 5px;
-    grid-column: 3/4;
-}
-.logo {
-    width: 80px;
-}
-.order {
-    grid-column: 4/6;
-}
-header a {
-    color: #f0f0f0;
-    justify-self: center;
-    align-self: center;
-    text-decoration: none;
-}
 .title, .camp_title {
     padding-top: 40px;
     padding-bottom: 40px;
     text-align: center;
 }
+
+.camp_title {
+    background-color: #003366;
+    color: #f0f0f0;
+}
+
+.camp_name {
+    text-align: center;
+}
+
 /*this is the pic and the paragraph*/
 #border {
     display: grid;
@@ -155,37 +166,6 @@ header a {
     align-self: center;
     font-size: .8em;
 }
-/*this part is the footer*/
-footer {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    background-color: #003366;
-    padding-top: 2em;
-    padding-bottom: 2em;
-
-}
-footer a {
-    color: #f0f0f0;
-    text-decoration: none;
-    justify-self: center;
-    align-self: center;
-}
-footer p {
-    color: #f0f0f0;
-    grid-column: 2/3;
-    justify-self: center;
-    align-self: center;
-}
-footer .logo_link {
-    grid-column: 1/2;
-    justify-self: center;
-    align-self: center;
-}
-#scout_link {
-    grid-column: 5/6;
-    padding-right: 1em;
-}
-/*title and about section*/
 
 #about_section {
     display: grid;
@@ -202,13 +182,6 @@ footer .logo_link {
     width: 100%;
 }
 
-.camp_title {
-    background-color: #003366;
-    color: #f0f0f0;
-}
-.camp_name {
-    text-align: center;
-}
 #hale_info, #z_base, #philmont, #colorado {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -253,95 +226,39 @@ footer .logo_link {
     background-color: rgba(0,0,0,0);
     border: none;
 }
+/*this part is the footer*/
+footer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: #003366;
+    padding-top: 2em;
+    padding-bottom: 2em;
 
-
-/* this is the css for the slideshow*/
-* {box-sizing:border-box}
-
-/* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
 }
+footer a {
+    color: #f0f0f0;
+    text-decoration: none;
+    justify-self: center;
+    align-self: center;
+}
+footer p {
+    color: #f0f0f0;
+    grid-column: 2/3;
+    justify-self: center;
+    align-self: center;
+}
+footer .logo_link {
+    grid-column: 1/2;
+    justify-self: center;
+    align-self: center;
+}
+#scout_link {
+    grid-column: 5/6;
+    padding-right: 1em;
+}
+/*title and about section*/
 
-/* Hide the images by default */
-.mySlides {
-  display: none;
-}
-.slideshow-container img {
-    vertical-align: middle;
-}
 
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-/*slideshow also includes query at bottom, but this is the end of the other code*/
 
 /* this is the start of the mulch page CSS*/
 #mulch_grid {
@@ -407,4 +324,42 @@ footer .logo_link {
   to {opacity: 1}
 }
 
-/* end slideshow*/
+/* Flash Messages */
+.flash-messages {
+    margin: 1rem auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+
+    .flash {
+        padding: 1rem 1.25rem;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+        border-left: 4px solid;
+        font-size: 0.95rem;
+        line-height: 1.5;
+
+        &.success {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        &.error {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        &.warning {
+            background-color: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        &.info {
+            background-color: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+    }
+}
