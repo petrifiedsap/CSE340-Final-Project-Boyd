@@ -24,13 +24,20 @@
     <% } %>
 </head>
 <body>
+    <!-- why do I have a div that holds all the same things as body?-->
     <div id="content">
     <header>
-        <nav>
+        <nav>   
+
     <ul>
         <!-- Always visible links -->
         <li><a href="/">Home</a></li>
         <li><a href="/about_us">About</a></li>
+        <li>
+            <a class="logo_link" href="/">
+                <img class="logo" src="/images/scout_logo.PNG" alt="Troop 27 logo">
+            </a>
+        </li>
         <li><a href="/about_mulch">Why Mulch?</a></li>
         <li><a href="/product">Product Catalog</a></li>
         <li><a href="/order">Order</a></li>
@@ -50,12 +57,4 @@
         <% } %>
     </ul>
 </nav>
-<!--
-        <a class="nav_link" href="/about_us">About our Troop</a>
-        <a class="nav_link" href="/about_mulch">Why Mulch?</a>
-        <a class="logo_link" href="/">
-            <img class="logo" src="/images/scout_logo.PNG" alt="Troop 27 logo">
-        </a>
-        <a class="nav_link" href="/mulch">Mulch</a>
-        <a class="order" href="http://planoscouts27.com/">Order Now!</a>     
-    </header> -->
+    </header>
