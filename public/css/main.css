@@ -234,23 +234,23 @@ footer {
     padding-top: 2em;
     padding-bottom: 2em;
 
-}
-footer a {
-    color: #f0f0f0;
-    text-decoration: none;
-    justify-self: center;
-    align-self: center;
-}
-footer p {
-    color: #f0f0f0;
-    grid-column: 2/3;
-    justify-self: center;
-    align-self: center;
-}
-footer .logo_link {
-    grid-column: 1/2;
-    justify-self: center;
-    align-self: center;
+    a {
+        color: #f0f0f0;
+        text-decoration: none;
+        justify-self: center;
+        align-self: center;
+    }
+     p {
+        color: #f0f0f0;
+        grid-column: 2/3;
+        justify-self: center;
+        align-self: center;
+    }
+    .logo_link {
+        grid-column: 1/2;
+        justify-self: center;
+        align-self: center;
+    }
 }
 #scout_link {
     grid-column: 5/6;
