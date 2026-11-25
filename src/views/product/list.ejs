@@ -7,9 +7,12 @@
     <div class="product-list">
         <% Object.values(products).forEach(product => { %>
             <div class="product-card">
-                <h3><a href="/product/<%= product.slug %>"><%= product.name %></a></h3>
-                <p class="product-id"><%= product.color %></p>
-                <p class="product-description"><%= product.description %></p>
+                <img class="product-photo" src="/images/product/<%= product.slug %>.jpg" alt="picture of <%= product.name %>">
+                <div class="product-info">
+                    <h3><a href="/product/<%= product.slug %>"><%= product.name %></a></h3>
+                    <p class="product-id"><%= product.color %></p>
+                    <p class="product-description"><%= product.description %></p>
+                </div>
             </div>
         <% }); %>
     </div>

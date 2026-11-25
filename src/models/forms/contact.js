@@ -9,7 +9,7 @@ import db from '../db.js';
  */
 
 // TODO change contact_for DB stuff to Order form
-const createOrderForm = async (subject, message) => {
+const createContactForm = async (subject, message) => {
     const query = `
         INSERT INTO contact_form (subject, message)
         VALUES ($1, $2)
@@ -24,7 +24,7 @@ const createOrderForm = async (subject, message) => {
  * 
  * @returns {Promise<Array>} Array of contact form records
  */
-const getAllOrderForms = async () => {
+const getAllContactForms = async () => {
     const query = `
         SELECT id, subject, message, submitted
         FROM contact_form
@@ -34,4 +34,4 @@ const getAllOrderForms = async () => {
     return result.rows;
 };
 
-export { createOrderForm, getAllOrderForms };
+export { createContactForm, getAllContactForms };

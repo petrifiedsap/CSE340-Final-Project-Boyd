@@ -27,7 +27,7 @@ INSERT INTO products (name, description, color, premium, base_price, price_insta
     ('Hardwood Mulch', 'Lovely red hardwood mulch ideal for your garden', 'Red', FALSE, 5, 7, 'red_reg'),
     ('Premium Hardwood Mulch', 'Premium brown hardwood mulch ideal for your garden', 'Brown', TRUE, 7, 9, 'brown_prem'),
     ('Premium Hardwood Mulch', 'Premium black hardwood mulch ideal for your garden', 'Black', TRUE, 7, 9, 'black_prem'),
-    ('Premium Cedar Mulch', 'Premium red cedar mulch ideal for your garden', 'Red', TRUE, 7, 9, 'red_prem'),
-    ('American Flag', 'American Flag exchange', 'red white and blue', FALSE, 10, 15, 'flag');
+    ('Premium Cedar Mulch', 'Premium red cedar mulch ideal for your garden', 'Red', TRUE, 7, 9, 'cedar'),
+    ('American Flag', 'American Flag exchange', 'Red, White and Blue', FALSE, 10, 15, 'flag');
 
 COMMIT;

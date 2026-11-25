@@ -1,11 +1,35 @@
 <%- include('../partials/header') %>
 <main>
+    <h1><%= product.name %></h1>
     <div class="product-details">
-        <h1><%= product.name %></h1>
-        <img class="product-photo" src="/images/gardening.jpg" alt="picture of <%= product.name %>">
-        <p class="product-color"><%= product.color %></p>
-        <p class="product-description"> <%= product.description %> </p>
+        
+        <img class="product-photo" src="/images/product/<%= product.slug %>.jpg" alt="picture of <%= product.name %>">
+        <div class="product-info">
+            <p> <%= product.description %> </p>
+            <p> <%= product.color %> </p>
+            <p>Product price:  $<%= product.basePrice %> </p>
+            <p>Price spread or installed:  $<%= product.priceInstalled %> </p>
+        </div>
     </div>
+    <form action="/cart/add" method="POST">
+        <input type="hidden" name="productID" value="<%= product.id %>">
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" value="1" min="1">
+        <fieldset>
+        <legend>Select Option:</legend>
+        <label>
+            <input type="radio" name="priceType" value="basePrice" checked>
+            Item delivered only - $<%= product.basePrice %>
+        </label>
+        <% if (product.priceInstalled) { %>
+            <label>
+                <input type="radio" name="priceType" value="priceInstalled">
+                Item delivered and deployed - $<%= product.priceInstalled %>
+            </label>
+        <% } %>
+        </fieldset>
+        <button type="submit">Add to Cart</button>
+    </form>
     
     <div class="navigation">
         <p><a href="/product">&larr; Back to Products</a></p>

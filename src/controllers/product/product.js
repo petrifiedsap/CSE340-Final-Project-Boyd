@@ -12,9 +12,10 @@ console.log(sort);
     });
 };
 
-// Route handler for individual faculty detail pages
+// Route handler for individual product detail pages
 const productDetailPage = async (req, res, next) => {
     const productSlug = req.params.productSlug;
+    console.log(productSlug);
     const product = await getProductBySlug(productSlug);
 console.log(productSlug);
 console.log(product);

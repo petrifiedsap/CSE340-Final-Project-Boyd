@@ -11,6 +11,8 @@ import { addLocalVariables } from './src/middleware/global.js';
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
 import { startSessionCleanup } from './src/utils/session-cleanup.js';
+// Import flash messages
+import flash from './src/middleware/flash.js';
 
 // Server Configuration
 // Define the port number the server will listen on
@@ -77,50 +79,11 @@ app.use((req, res, next) => {
     next(); // Pass control to the next middleware or route
 });
 
+app.use(flash);
 /**
  * Routes
  */
 app.use('/', routes);
-// I think we can get rid of these?
-//app.get('/', (req, res) => {
-  //  const title = 'Welcome Home';
-  //  res.render('home', { title });
-//});
-
-//app.get('/about_us', (req, res) => {
-  //  const title = 'About Me';
-  //  res.render('about_us', { title });
-//});
-
-//app.get('/about_mulch', (req, res) => {
-  //  const title = 'Our Products';
-  //  res.render('about_mulch', { title });
-//});
-
-// Course detail page with route parameter
-//app.get('/catalog/:courseId', (req, res) => {
-    // Extract the course ID from the URL
-  //  const courseId = req.params.courseId;
-
-    // Look up the course in our data
-    //const course = courses[courseId];
-
-    // Handle course not found
-    //if (!course) {
-      //  const err = new Error(`Course ${courseId} not found`);
-        //err.status = 404;
-       // return next(err);
-    //}
-
-    // Log the parameter for debugging
-    //console.log('Viewing course:', courseId);
-
-    // Render the course detail template
-    //res.render('course-detail', {
-      //  title: `${course.id} - ${course.title}`,
-       // course: course
-    //});
-//});
 
 /**
  * Error Handling

@@ -1,0 +1,35 @@
+<!--used AI for help with this file-->
+<%- include('../partials/header') %>
+<main>
+    <h1>Your Shopping Cart</h1>
+
+    <% if (cartItems.length === 0) { %>
+        <p>Your cart is currently empty.</p>
+        <a href="/product">Browse Mulch</a>
+    <% } else { %>
+        <div class="cart-list">
+            <% cartItems.forEach(item => { %>
+                <div class="cart-item">
+                    <img src="/images/product/<%= item.slug %>.jpg" alt="<%= item.name %>">
+                    <div>
+                        <h3><a href="/product/<%= item.slug %>"><%= item.name %></a></h3>
+                        <p>Color: <%= item.color %> | Option: <%= item.optionLabel %></p>
+                        <p>$<%= item.unitPrice.toFixed(2) %> x <%= item.quantity %> = <strong>$<%= item.lineTotal.toFixed(2) %></strong></p>
+                    </div>
+
+                    <form action="/cart/remove" method="POST">
+                        <input type="hidden" name="productId" value="<%= item.productId %>">
+                        <input type="hidden" name="priceField" value="<%= item.priceField %>">
+                        <button type="submit">Remove</button>
+                    </form>
+                </div>
+            <% }); %>
+        </div>
+
+        <div class="cart-summary">
+            <h2>Total: $<%= grandTotal.toFixed(2) %></h2>
+            <a href="/checkout">Proceed to Checkout</a>
+        </div>
+    <% } %>
+</main>
+<%- include('../partials/footer') %>

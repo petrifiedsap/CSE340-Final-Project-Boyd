@@ -1,11 +1,12 @@
 // import statements from controllers and middleware
 import { homePage, aboutPage, aboutMulch } from './index.js';
 import { productListPage, productDetailPage } from './product/product.js';
-import orderRoutes from './forms/order.js';
+import contactRoutes from './forms/contact.js';
 import registrationRoutes from './forms/registration.js';
 import loginRoutes from './forms/login.js';
 import { processLogout, showDashboard } from './forms/login.js';
 import { requireLogin } from '../middleware/auth.js';
+import cartRoutes from './cart/cart.js';
 
 import { Router } from 'express';
 
@@ -24,8 +25,8 @@ router.use('/register', (req, res, next) => {
     next();
 });
 
-router.use('/order', (req, res, next) => {
-    res.addStyle('<link rel="stylesheet" href="/css/order.css">');
+router.use('/contact', (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/contact.css">');
     next();
 });
 
@@ -46,10 +47,13 @@ router.get('/dashboard', requireLogin, showDashboard);
 
 // Mulch info routes
 router.get('/product', productListPage);
-router.get('/product/:slugId', productDetailPage);
+router.get('/product/:productSlug', productDetailPage);
+
+//cart routes
+router.use('/cart', cartRoutes);
 
 // Contact form routes
-router.use('/order', orderRoutes);
+router.use('/contact', contactRoutes);
 
 // Registration routes
 router.use('/register', registrationRoutes);

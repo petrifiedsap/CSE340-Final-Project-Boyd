@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
-import { createOrderForm, getAllOrderForms } from '../../models/forms/order.js';
+import { createContactForm, getAllContactForms } from '../../models/forms/contact.js';
 
 const router = Router();
 
 /**
  * Display the order form page.
  */
-const showOrderForm = (req, res) => {
-    res.render('forms/order/form', {
+const showContactForm = (req, res) => {
+    res.render('forms/contact/form', {
         title: 'Contact Us'
     });
 };
@@ -18,7 +18,7 @@ const showOrderForm = (req, res) => {
  * If validation passes, save to database and redirect.
  * If validation fails, log errors and redirect back to form.
  */
-const handleOrderSubmission = async (req, res) => {
+const handleContactSubmission = async (req, res) => {
     // Check for validation errors
     const errors = validationResult(req);
 
@@ -34,38 +34,38 @@ const handleOrderSubmission = async (req, res) => {
 
     try {
         // Save to database
-        await createOrderForm(subject, message);
-        console.log('Order form submitted successfully');
+        await createContactForm(subject, message);
+        console.log('Contact form submitted successfully');
         // Redirect to responses page on success
-        res.redirect('/order/responses');
+        res.redirect('/contact/responses');
     } catch (error) {
         console.error('Error saving contact form:', error);
-        res.redirect('/order');
+        res.redirect('/contact');
     }
 };
 
 /**
  * Display all contact form submissions.
  */
-const showOrderResponses = async (req, res) => {
-    let orderForms = [];
+const showContactResponses = async (req, res) => {
+    let contactForms = [];
 
     try {
-        orderForms = await getAllOrderForms();
+        contactForms = await getAllContactForms();
     } catch (error) {
-        console.error('Error retrieving order forms:', error);
+        console.error('Error retrieving contact forms:', error);
     }
 
-    res.render('forms/order/responses', {
-        title: 'Order Form Submissions',
-        orderForms
+    res.render('forms/contact/responses', {
+        title: 'Contact Form Submissions',
+        contactForms
     });
 };
 
 /**
  * GET /contact - Display the contact form
  */
-router.get('/', showOrderForm);
+router.get('/', showContactForm);
 
 /**
  * POST /contact - Handle contact form submission with validation
@@ -81,12 +81,12 @@ router.post('/',
             .isLength({ min: 10 })
             .withMessage('Message must be at least 10 characters')
     ],
-    handleOrderSubmission
+    handleContactSubmission
 );
 
 /**
  * GET /contact/responses - Display all contact form submissions
  */
-router.get('/responses', showOrderResponses);
+router.get('/responses', showContactResponses);
 
 export default router;
